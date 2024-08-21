@@ -1,0 +1,18 @@
+p{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+mat-card-header{justify-items: center;}
+
+mat-card{
+    border: 0.001px solid rgb(18, 18, 18);
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.673); /* Fondo blanco semitransparente */
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+}
