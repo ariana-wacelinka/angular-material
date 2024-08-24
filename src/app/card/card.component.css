@@ -1,4 +1,23 @@
-p{
+span {
+    grid-template-areas:
+    "card1 card2";
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#card1{
+    grid-area: card1;
+    display: grid;
+}
+
+#card2{
+    grid-area: card2;
+    display: grid;
+
+}
+
+.titulo {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
@@ -8,11 +27,61 @@ p{
 
 mat-card-header{justify-items: center;}
 
+.example-form {
+    min-width: 150px;
+}
+  
+.example-full-width {
+    width: 100%;
+}  
+
+button{
+    width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
 mat-card{
     border: 0.001px solid rgb(18, 18, 18);
     margin: 20px;
     padding: 15px;
     border-radius: 20px;
+    width: 700px;
+    height: 850px;
+    min-width: 150px;
+    max-width:700px;
     background-color: rgba(0, 0, 0, 0.673); /* Fondo blanco semitransparente */
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+}
+
+mat-button-toggle{
+    padding: 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+mat-button-toggle-group{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+#genero{
+    margin-top: 10px;
+}
+
+#gender{
+    margin-top: 10px;
+}
+
+.json{
+    margin-top: 10px;
+    font-size: 16px;
+    margin-left: 15px;
+}
+
+#limpiar{
+    margin-top: 393px;
 }

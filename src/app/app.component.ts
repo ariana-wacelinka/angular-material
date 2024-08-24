@@ -8,4 +8,5 @@ import { CardComponent } from "./card/card.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'})
 export class AppComponent {
+  
 }

@@ -1,24 +1,83 @@
-<mat-card appearance="outlined">
-    <mat-card-header>
-        <p>Create Account</p>
-    </mat-card-header>
-    <mat-card-content>
-        <label for="first-name">First Name:</label>
-        <name-input/>
-        <label for="last-name">Last Name:</label>
-        <last-name-input/>
-        <label for="email">Email:</label>
-        <email-input/>
-        <label for="password">Password:</label>
-        <password-input/>
-        <label for="datepicker">Date of Birth:</label>
-        <br>
-        <input-date/>
-        <br>
-        <label for="gender">Gender:</label>
-        <br>
-        <gender-input/>
-        <br>
-        <button-register/>
-    </mat-card-content>
-</mat-card>  
+<span>
+    <div id="card1">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <p class="titulo">Create Account</p>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="formGroup" (ngSubmit)="crearJson()">
+                    <label for="first-name" class="example-form">First Name:</label>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>First Name</mat-label>
+                        <input id="name" matInput formControlName="name" placeholder="Enter your first name" required>
+                    </mat-form-field>
+
+                    <label for="last-name">Last Name:</label>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Last Name</mat-label>
+                        <input id="last-name" matInput formControlName="lastName" placeholder="Enter your last name" required>
+                    </mat-form-field>
+
+                    <label for="email">Email:</label>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+                        <mat-error *ngIf="formGroup.get('email')?.hasError('email') && !formGroup.get('email')?.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <label for="password">Password:</label>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input id="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'" placeholder="Enter your password">
+                    </mat-form-field>
+
+                    <label for="datepicker">Date of Birth:</label><br>
+                    <mat-form-field>
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput formControlName="date" [matDatepicker]="picker" required>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field><br><br>
+
+                    <label id="gender" for="gender">Gender:</label>
+                    <mat-button-toggle-group formControlName="gender" aria-label="Font Style" required>
+                        <mat-button-toggle value="Female">Female</mat-button-toggle>
+                        <mat-button-toggle value="Male">Male</mat-button-toggle>
+                        <mat-button-toggle value="Other">Other</mat-button-toggle>
+                    </mat-button-toggle-group>
+
+                    <button type="submit" mat-fab extended>
+                        Register
+                        <mat-icon>how_to_reg</mat-icon>
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div id="card2">
+        <mat-card *ngIf="enviado">
+            <mat-card-header>
+                <p class="titulo">Account Created</p>
+            </mat-card-header>
+            <mat-card-content>
+                <div>&#123;</div>
+                    <div class="json">"first_name": "{{ formGroup.get('name')?.value }}",</div>
+                    <div class="json">"last_name": "{{ formGroup.get('lastName')?.value }}"</div>
+                    <div class="json">"email": "{{ formGroup.get('email')?.value }}"</div>
+                    <div class="json">"password": "{{ formGroup.get('password')?.value }}"</div>
+                    <div class="json">"birthday": "{{ formGroup.get('date')?.value | date: 'MM/dd/yyyy' }}"</div>
+                    <div class="json">"gender": "{{ formGroup.get('gender')?.value }}"</div>
+                <div>&#125;</div>
+                    <button id="limpiar" type="submit" mat-fab extended (click)="limpiarCampos()">
+                        Limpiar
+                    </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</span>
